@@ -44,11 +44,10 @@ export default function Home() {
       setLoading(true);
       setResult(null);
 
-      const response = await axios.post(
-        "http://127.0.0.1:8000/scan",
-        formData
-      );
-
+      await axios.post(
+  "https://medi-lens.onrender.com/scan",
+  formData
+);
       setResult(response.data);
 
       console.log("Current User:", auth.currentUser);
