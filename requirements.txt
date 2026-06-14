@@ -3,6 +3,4 @@ uvicorn
 python-dotenv
 python-multipart
 google-generativeai
-easyocr
-opencv-python-headless
 pillow

@@ -1,5 +1,4 @@
 from fastapi import FastAPI, UploadFile, File
-import easyocr
 import shutil
 import os
 from fastapi.middleware.cors import CORSMiddleware
@@ -13,8 +12,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-# Initialize OCR
-reader = easyocr.Reader(['en'])
 
 UPLOAD_DIR = "uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
@@ -43,18 +40,11 @@ async def scan_medicine(file: UploadFile = File(...)):
                 file.file,
                 buffer
             )
+            image = Image.open(filepath)
+            analysis = analyze_medicine(image)
 
-        # OCR
-        result = reader.readtext(filepath)
 
-        ocr_words = [
-            item[1]
-            for item in result
-        ]
 
-        extracted_text = " ".join(
-            ocr_words
-        )
 
         # AI Analysis
         analysis = analyze_medicine(

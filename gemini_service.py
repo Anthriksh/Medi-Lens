@@ -15,13 +15,13 @@ model = genai.GenerativeModel(
 )
 
 
-def analyze_medicine(ocr_text):
+def analyze_medicine(image):
 
     prompt = f"""
 You are MediLens AI, an intelligent medicine assistant.
 
-OCR TEXT:
-{ocr_text}
+Analyze the medicine package shown in the uploaded image.
+Read any visible text from the packaging and explain it.
 
 Analyze the medicine information and explain it for normal people with no medical background.
 
@@ -78,7 +78,9 @@ JSON FORMAT:
 
     try:
 
-        response = model.generate_content(prompt)
+        response = model.generate_content(
+    [prompt, image]
+)
 
         text = response.text.strip()
 
