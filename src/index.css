@@ -103,12 +103,11 @@ body{
 
 .stats-grid{
   display:grid;
-
-  grid-template-columns:
-  repeat(3,1fr);
-
+  grid-template-columns: repeat(3,1fr);
   gap:20px;
-  .upload-center{
+}
+
+.upload-center{
   position:relative;
   display:flex;
   justify-content:center;
@@ -119,13 +118,9 @@ body{
   position:absolute;
   width:600px;
   height:600px;
-
   background:#06b6d4;
-
   filter:blur(180px);
-
   opacity:.15;
-
   border-radius:50%;
 }
 
@@ -290,6 +285,17 @@ body{
   }
 }
 
+@keyframes slideDown {
+  from {
+    opacity:0;
+    transform:translateY(-20px);
+  }
+
+  to {
+    opacity:1;
+    transform:translateY(0);
+  }
+}
 .ocr-box{
   position:absolute;
 
@@ -624,5 +630,4 @@ body{
 
   --border: rgba(56,189,248,.25);
 
-}
 }
